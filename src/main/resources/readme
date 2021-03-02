@@ -1,0 +1,16 @@
+chapter12  主要是废话
+chapter3 spring IOC 2021.01.25
+chapter4 spring AOP 2021.01.26
+chapter5 spring 集成数据库 mybatis 2021.01.27
+chapter6 数据库事务 隔离与传播 isolation and propagation  2021.01.29
+chapter7 redis 2021.01.29 2021.01.30 [缓存管理器没有实践]
+chapter8 mongoDB [暂时不看]
+chapter9 初识spring MVC 2021.01.30 dispatchServlet
+chapter10  深入spring MVC 2021.01.30
+chapter11 REST风格网站
+chapter12 spring security
+chapter13 spring其他技能 线程池 异步消息 定时任务
+chapter14 spring5新框架 WebFlux 响应式编程
+chapter15 实践 抢购商品
+chapter16 部署测试监控
+chapter17 分布式开发 spring Cloud

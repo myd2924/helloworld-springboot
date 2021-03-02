@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myd.helloworld.chapter6.service.repository.StudentDao">
+    <select id="getStudent" parameterType="Long" resultType="com.myd.helloworld.chapter5.bean.Student">
+        select id,name,age,note from t_student where id = #{id}
+    </select>
+
+    <insert id="insertStudent" useGeneratedKeys="true" keyProperty="id">
+        insert into t_student(name,note,age) VALUE (#{name},#{note},#{age})
+    </insert>
+
+    <select id="getStudentLikeName" parameterType="String" resultType="com.myd.helloworld.chapter5.bean.Student">
+        select id,name,age,note from t_student where name is null or name like concat('%', #{name}, '%')
+    </select>
+
+</mapper>
