@@ -33,13 +33,13 @@ public class DIController {
 
     @ResponseBody
     @RequestMapping("/test2")
-    public User printUser(){
+    public User printUser(String aa){
         User user = new User();
         user.setId(2);
         user.setName("二曦");
         user.setNote("糖豆");
         user2Service.printUser(user);
-        user2Service.manyAspect();
+        user2Service.manyAspect(user);
         return user;
     }
 

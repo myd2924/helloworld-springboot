@@ -13,5 +13,5 @@ public interface User2Service {
 
     void printUser(User user);
 
-    void manyAspect();
+    void manyAspect(User user);
 }

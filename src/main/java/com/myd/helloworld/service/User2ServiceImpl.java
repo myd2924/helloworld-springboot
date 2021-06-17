@@ -22,7 +22,7 @@ public class User2ServiceImpl implements User2Service {
     }
 
     @Override
-    public void manyAspect(){
+    public void manyAspect(User user){
         System.out.println("多个切面");
     }
 }

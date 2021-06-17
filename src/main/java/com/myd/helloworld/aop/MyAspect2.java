@@ -41,6 +41,8 @@ public class MyAspect2 {
 
     @Around("manyAspect()")
     public void around(ProceedingJoinPoint jp) throws Throwable {
+        Object[] args = jp.getArgs();
+        System.out.println(args);
         System.out.println("环绕前2");
         jp.proceed();
         System.out.println("环绕后2");
