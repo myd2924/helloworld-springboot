@@ -9,6 +9,8 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * @author <a href="mailto:mayuanding@qianmi.com">OF3787-马元丁</a>
  * @version 0.1.0
@@ -24,6 +26,7 @@ public class ActiveMqSellerServiceImpl implements ActiveMqSellerService {
     private static final String MY_DESTINATION = "my-destination";
 
     @Autowired
+    @Resource(name = "topicTemplate")
     private JmsTemplate jmsTemplate;
 
     @Autowired

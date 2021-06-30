@@ -6,6 +6,8 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * @author <a href="mailto:mayuanding@qianmi.com">OF3787-马元丁</a>
  * @version 0.1.0
@@ -19,6 +21,7 @@ public class ActiveMqServiceImpl implements ActiveMqService {
      * 注入由spring boot 生产的jmsTemplate
      */
     @Autowired
+    @Resource(name = "queueTemplate")
     private JmsTemplate jmsTemplate;
 
 
