@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @author <a href="mailto:mayuanding@qianmi.com">OF3787-马元丁</a>
  * @version 0.1.0
  * @Date:2021/1/25 19:09
- * @Description:
+ * @Description: bean后置处理器
  */
 @Component
 public class BeanPostProcessorExample implements BeanPostProcessor {
