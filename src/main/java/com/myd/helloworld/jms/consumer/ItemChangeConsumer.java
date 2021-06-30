@@ -1,5 +1,6 @@
 package com.myd.helloworld.jms.consumer;
 
+import com.myd.helloworld.annotation.JmsDispatcherInterceptor;
 import com.myd.helloworld.jms.product.DestinationConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
@@ -17,9 +18,10 @@ import javax.jms.Message;
 @Slf4j
 public class ItemChangeConsumer {
 
-    @JmsListener(containerFactory = "",destination = DestinationConstant.ITEM_CHANGE_TOPIC)
+    @JmsDispatcherInterceptor
+    @JmsListener(containerFactory = "itemChangeTopicListenerContainerFactory",destination = DestinationConstant.ITEM_CHANGE_TOPIC)
     public void itemChange(final Message message){
-
+        log.info("MessageApp:{} = {}", DestinationConstant.ITEM_CHANGE_TOPIC, message);
     }
 
 }
