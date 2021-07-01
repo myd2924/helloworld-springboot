@@ -17,6 +17,6 @@ import java.util.List;
 public class DispatchTask {
 
     private final String sliceId;
-    private final List<String> messageId;
+    private final List<String> messageIds;
 
 }

@@ -94,7 +94,7 @@ public class RedisConfig {
         return new StringRedisSerializer();
     }
 
-    @Bean
+    @Bean(name = "redisTemplate")
     public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         StringRedisTemplate template = new StringRedisTemplate(redisConnectionFactory);
         template.setDefaultSerializer(jacksonSerializer());

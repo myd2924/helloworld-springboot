@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 @Getter(AccessLevel.PACKAGE)
 @Slf4j
-public class ExecutorManage {
+public class ExecutorManager {
 
     @Value("${message.dispatch.restTimeMill}")
     private long restTimeMillis;
@@ -32,7 +32,7 @@ public class ExecutorManage {
     private final ThreadPoolExecutor taskExecutor;
     private final AtomicInteger threadNumber = new AtomicInteger(1);
 
-    public ExecutorManage(){
+    public ExecutorManager(){
         final SecurityManager s = System.getSecurityManager();
         final ThreadGroup threadGroup = (s!=null)?s.getThreadGroup():Thread.currentThread().getThreadGroup();
         final int availableProcessors = Runtime.getRuntime().availableProcessors();
