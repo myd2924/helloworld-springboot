@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * @Date:2021/6/30 17:43
  * @Description: 调度常量
  */
-public interface DispatchContants {
+public interface DispatchConstants {
 
     String PREFIX                        = "PC_M_D:";
     String TODO_SLICE_ID_KEY             = PREFIX + "TODO_SLICE_IDS";   // 等待处理的分片业务ID列表，即等待处理的chainMasterId

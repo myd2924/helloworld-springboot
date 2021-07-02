@@ -1,7 +1,6 @@
 package com.myd.helloworld.jms.consumer.resolver.support;
 
 import com.myd.helloworld.entity.Message;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -30,7 +29,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
-public class DispatchTaskPool implements DispatchContants{
+public class DispatchTaskPool implements DispatchConstants {
 
     @Resource
     @Qualifier("redisTemplate")

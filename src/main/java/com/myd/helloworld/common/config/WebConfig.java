@@ -1,5 +1,8 @@
-package com.myd.helloworld.common;
+package com.myd.helloworld.common.config;
 
+import com.myd.helloworld.common.interceptor.MyInterceptor1;
+import com.myd.helloworld.common.interceptor.MyInterceptor2;
+import com.myd.helloworld.common.interceptor.MyInterceptor3;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -9,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author <a href="mailto:mayuanding@qianmi.com">OF3787-马元丁</a>
  * @version 0.1.0
  * @Date:2021/2/9 14:46
- * @Description: TODO
+ * @Description:
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
