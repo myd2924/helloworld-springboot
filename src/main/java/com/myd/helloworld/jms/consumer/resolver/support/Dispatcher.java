@@ -55,6 +55,7 @@ public class Dispatcher implements SmartLifecycle{
                 statusManager.start();
                 try {
                     while (statusManager.canRunning()) {
+                        System.out.println("跑来了嘛");
                         final DispatchTask task = dispatchMeta.getTaskPool().next();
                         if(Objects.nonNull(task) && CollectionUtils.isNotEmpty(task.getMessageIds())){
                             executorManager.getTaskExecutor().submit(Resolver.of(dispatchMeta,task));

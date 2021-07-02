@@ -99,7 +99,7 @@ public class DispatchTaskPool implements DispatchContants{
     }
 
     private String backupThenNextTodoSliceId() {
-        return redisTemplate.execute(new DefaultRedisScript<>(LUA_ZPOP_AND_PUSH_IF_ABSENT, String.class),
+        return  redisTemplate.execute(new DefaultRedisScript<>(LUA_ZPOP_AND_PUSH_IF_ABSENT, String.class),
                 Arrays.asList(TODO_SLICE_ID_KEY, DOING_SLICE_ID_KEY),
                 Instant.now().toEpochMilli(),
                 DEFAULT_TTL);

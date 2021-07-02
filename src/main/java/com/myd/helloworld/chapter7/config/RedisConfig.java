@@ -99,9 +99,9 @@ public class RedisConfig {
         StringRedisTemplate template = new StringRedisTemplate(redisConnectionFactory);
         template.setDefaultSerializer(jacksonSerializer());
         template.setKeySerializer(stringSerializer());
-        template.setValueSerializer(stringSerializer());
+        template.setValueSerializer(jacksonSerializer());
         template.setHashKeySerializer(stringSerializer());
-        template.setHashValueSerializer(stringSerializer());
+        template.setHashValueSerializer(jacksonSerializer());
         return template;
     }
 
