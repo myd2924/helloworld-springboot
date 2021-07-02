@@ -73,6 +73,12 @@ public class Dispatcher implements SmartLifecycle{
         });
     }
 
+    /**
+     * 正确的调用顺序是
+     shutdown方法
+     awaitTermination方法
+     shutdownNow方法(发生异常或者是Timeout的时候)
+     */
     @Override
     public synchronized void stop() {
         statusManager.stop();

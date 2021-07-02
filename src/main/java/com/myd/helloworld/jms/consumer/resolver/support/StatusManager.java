@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author <a href="mailto:mayuanding@qianmi.com">OF3787-马元丁</a>
  * @version 0.1.0
  * @Date:2021/6/30 17:48
- * @Description:  参考线程池状态位
+ * @Description:  参考线程池状态位  就是设置一个状态位 管理dispatch的lifecycle  切换方式
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StatusManager {
