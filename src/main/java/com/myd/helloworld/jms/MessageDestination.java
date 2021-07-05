@@ -16,7 +16,7 @@ import javax.jms.Destination;
 @Configuration
 public class MessageDestination {
 
-    @Bean(name="itemChangeForOmsTopic")
+    @Bean(name="itemChangeTopic")
     public Destination itemChangeForOmsTopic(){
         return new ActiveMQTopic(DestinationConstant.ITEM_CHANGE_TOPIC);
     }

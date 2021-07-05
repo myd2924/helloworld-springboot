@@ -1,10 +1,12 @@
 package com.myd.helloworld.common.interceptor.support;
 
 import com.myd.helloworld.entity.Message;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.jms.JMSException;
+import javax.jms.TextMessage;
 import java.util.Date;
 import java.util.Optional;
 
@@ -16,11 +18,18 @@ import java.util.Optional;
  */
 @Slf4j
 public abstract class AbstractMessageBuilder {
-    Message buildMessageBaseInfo(final javax.jms.Message source){
-        return Message.builder()
-                .addTime(new Date())
-                .messageName(getMessageName(source))
-                .build();
+
+    @SneakyThrows
+    Message buildMessageBaseInfo(final javax.jms.Message source) {
+        if(source instanceof TextMessage){
+            TextMessage textMessage = (TextMessage)source;
+            return Message.builder()
+                    .addTime(new Date())
+                    .message(textMessage.getText())
+                    .messageName(getMessageName(source))
+                    .build();
+        }
+        return null;
     }
 
     private String getMessageName(final javax.jms.Message source){

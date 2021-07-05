@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import javax.jms.JMSException;
 import javax.jms.Message;
+import javax.jms.TextMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,12 +43,18 @@ public class JmsListenerInterceptor {
     @Around("@annotation(org.springframework.jms.annotation.JmsListener) && @annotation(com.myd.helloworld.annotation.JmsDispatcherInterceptor)")
     public Object jmsListenerAround(final ProceedingJoinPoint joinPoint) throws Throwable {
         final Message source = this.deduceJmsMessage(joinPoint);
+        log.info("message:={}",source);
+        if(source instanceof TextMessage){
+            TextMessage text = (TextMessage)source;
+            final String textText = text.getText();
+            log.info("text:={}",text);
+        }
         try{
             final String fromApp = source.getStringProperty(JmsConstants.MESSAGE_SENDER_APP);
-            if (StringUtils.equals(fromApp, appName)) {
+            /*if (StringUtils.equals(fromApp, appName)) {
                 log.warn("可能循环发送消费MQ消息，请注意. message={}", source);
                 return null;
-            }
+            }*/
             List<com.myd.helloworld.entity.Message> messages = messageBuilder.buildMessage(source);
             taskPool.join(messages);
             return joinPoint.proceed();
