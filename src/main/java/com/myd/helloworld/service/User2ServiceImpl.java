@@ -1,5 +1,6 @@
 package com.myd.helloworld.service;
 
+import com.myd.helloworld.annotation.AopLog;
 import com.myd.helloworld.config.User;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class User2ServiceImpl implements User2Service {
 
     @Override
+    @AopLog(title = "打印用户信息",logService = "User2ServiceImpl",isSaveRequestData = false)
     public void printUser(User user) {
         if(null == user){
             throw new RuntimeException("user为null");
