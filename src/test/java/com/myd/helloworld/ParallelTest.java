@@ -37,7 +37,6 @@ public class ParallelTest extends BaseTest {
 
                 });
         System.out.println(list.size());
-        //list.parallelStream().peek(u-> System.out.println(u));
         list.forEach(u-> System.out.println(u));
 
     }
