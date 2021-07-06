@@ -1,5 +1,7 @@
 package com.myd.helloworld.chapter13.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -17,13 +19,21 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class AsyncConfig implements AsyncConfigurer {
 
+    private AsyncProperties asyncProperties;
+
+    @Autowired
+    public AsyncConfig(AsyncProperties asyncProperties){
+        this.asyncProperties = asyncProperties;
+    }
+
     @Override
+    @Bean(name = "asyncExecutor")
     public Executor getAsyncExecutor(){
-        ThreadPoolTaskExecutor excutor = new ThreadPoolTaskExecutor();
-        excutor.setCorePoolSize(10);
-        excutor.setMaxPoolSize(20);
-        excutor.setQueueCapacity(2000);
-        excutor.initialize();
-        return excutor;
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(asyncProperties.getCorePoolSize());
+        executor.setMaxPoolSize(asyncProperties.getMaxPoolSize());
+        executor.setQueueCapacity(asyncProperties.getQueueCapacity());
+        executor.initialize();
+        return new HandlerAsyncTaskExecutor(executor);
     }
 }

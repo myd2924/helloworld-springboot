@@ -1,7 +1,7 @@
 package com.myd.helloworld;
 
 import com.myd.helloworld.common.contants.RedisConstants;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import com.myd.helloworld.util.AsyncUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,8 @@ public class RedisTest {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
+
+
     @Test
     public void test1(){
         String lockKey = "123";
@@ -38,6 +40,7 @@ public class RedisTest {
             System.out.println("锁也存在了");
         }
         //指定lua脚本 并指定返回类型
+        AsyncUtil.run(()-> System.out.println("*****"));
         DefaultRedisScript<Long> redisScript = new DefaultRedisScript(RedisConstants.RELEASE_LOCK_LUA_SCRIPT,Long.class);
         final Long result = redisTemplate.execute(redisScript, Collections.singletonList(lockKey), uuid);
         System.out.println(result);
