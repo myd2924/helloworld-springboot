@@ -16,6 +16,7 @@ import java.util.List;
 public interface StudentDao {
 
     Student getStudent(Long id);
+
     int insertStudent(Student stu);
 
     List<Student> getStudentLikeName(String name);
