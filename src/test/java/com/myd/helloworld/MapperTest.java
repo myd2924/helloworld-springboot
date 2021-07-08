@@ -1,8 +1,10 @@
 package com.myd.helloworld;
 
+import com.myd.helloworld.chapter5.bean.Student;
 import com.myd.helloworld.chapter6.service.criteria.StudentCriteria;
 import com.myd.helloworld.chapter6.service.repository.StudentMapper;
 import org.junit.Test;
+import org.springframework.data.domain.Page;
 
 import javax.annotation.Resource;
 
@@ -21,6 +23,8 @@ public class MapperTest extends BaseTest {
     public void test1(){
         final long countStu = studentMapper.countStu(new StudentCriteria());
         System.out.println("*********student*********"+countStu);
+        final Page<Student> page = studentMapper.queryStudents(new StudentCriteria(), 0, 10);
+        System.out.println("****page*****"+page.getContent().get(0));
     }
 
 }

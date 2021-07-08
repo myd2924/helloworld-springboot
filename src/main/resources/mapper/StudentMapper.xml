@@ -7,4 +7,22 @@
         <if test="null != criteria.id"> and t.id = #{criteria.id}</if>
     </select>
 
+    <select id="doQueryStudents" resultType="com.myd.helloworld.chapter5.bean.Student">
+        select
+          t.id,t.name,t.note,t.age
+        from t_student t
+        where 1=1
+        <if test="null != criteria.id"> and t.id = #{criteria.id}</if>
+        <if test="null != criteria.name"> and t.name = #{criteria.name}</if>
+    </select>
+
+    <select id="doQueryStudentsByPageable" resultType="com.myd.helloworld.chapter5.bean.Student">
+        select
+          t.id,t.name,t.note,t.age
+        from t_student t
+        where 1=1
+        <if test="null != criteria.id"> and t.id = #{criteria.id}</if>
+        <if test="null != criteria.name"> and t.name = #{criteria.name}</if>
+    </select>
+
 </mapper>
