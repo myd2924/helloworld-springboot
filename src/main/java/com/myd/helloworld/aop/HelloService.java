@@ -8,4 +8,9 @@ package com.myd.helloworld.aop;
  */
 public interface HelloService {
     void sayHello(String name);
+    void invalidAopSayHello(String name);
+
+    void oneAopSayHello(String name);
+    void twoAopSayHello(String name);
+    void threeAopSayHello(String name);
 }

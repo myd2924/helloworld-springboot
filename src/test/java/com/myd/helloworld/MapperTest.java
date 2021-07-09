@@ -5,8 +5,11 @@ import com.myd.helloworld.chapter6.service.criteria.StudentCriteria;
 import com.myd.helloworld.chapter6.service.repository.StudentMapper;
 import org.junit.Test;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author <a href="mailto:mayuanding@qianmi.com">OF3787-马元丁</a>
@@ -25,6 +28,13 @@ public class MapperTest extends BaseTest {
         System.out.println("*********student*********"+countStu);
         final Page<Student> page = studentMapper.queryStudents(new StudentCriteria(), 0, 10);
         System.out.println("****page*****"+page.getContent().get(0));
+    }
+
+    @Test
+    public void test2(){
+        PageRequest pageRequest = PageRequest.of(0,10, Sort.by(Sort.Direction.DESC,"id"));
+        final List<Student> list = studentMapper.doQueryStudentsByPageable(new StudentCriteria(), pageRequest);
+        System.out.println(list);
     }
 
 }
