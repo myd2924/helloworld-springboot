@@ -62,6 +62,10 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
     @Pointcut("execution(public * com.myd.helloworld.chapter6.service.impl.*Impl.*(..))")
     public void pointcut(){}
 
+    /**
+     * 定义需要匹配的切点表达式，同时需要匹配参数
+     * @param request
+     */
     @Order(0)
     @Before("pointcut() && args(request)")
     public void check(CentreRequest request){
