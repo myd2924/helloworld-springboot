@@ -23,6 +23,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -54,6 +55,13 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
      */
     private Properties properties;
 
+    private static ScheduledExecutorService scheduledExecutorService;
+
+    @PostConstruct
+    public void postConstruct(){
+        scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().daemon(false).namingPattern("aop-counter-schedule").build());
+    }
+
     /**
      * 保存接口控制器信息
      */
@@ -61,6 +69,9 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
 
     @Pointcut("execution(public * com.myd.helloworld.chapter6.service.impl.*Impl.*(..))")
     public void pointcut(){}
+
+    @Pointcut(value = "@annotation(com.myd.helloworld.annotation.AnnotationAop)")
+    public void annotationCut(){}
 
     /**
      * 定义需要匹配的切点表达式，同时需要匹配参数
@@ -77,7 +88,7 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
     }
 
     @Order(1)
-    @Before("pointcut()")
+    @Before("pointcut() || annotationCut()")
     public void access(JoinPoint jp){
         try{
             if(MapUtils.isNotEmpty(accessProviderGuardMap)){
@@ -150,7 +161,7 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
          */
         private final AtomicLong counter;
 
-        private final ScheduledExecutorService scheduledExecutorService;
+
 
        // private final Timer timer;
 
@@ -159,7 +170,7 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
             this.accessLimit = accessLimit;
             counter = new AtomicLong(0);
            // this.timer = new Timer();
-            scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().daemon(false).namingPattern("aop-counter-schedule").build());
+            //scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().daemon(false).namingPattern("aop-counter-schedule").build());
             scheduledExecutorService.scheduleAtFixedRate(()-> counter.set(0),1,1, TimeUnit.SECONDS);
         }
 
