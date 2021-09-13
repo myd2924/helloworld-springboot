@@ -13,4 +13,8 @@
         select id,name,age,note from t_student where name is null or name like concat('%', #{name}, '%')
     </select>
 
+    <update id="updateStudent" >
+      UPDATE t_student SET name = #{name}, age = #{age}, note = #{note} where id = #{id}
+    </update>
+
 </mapper>

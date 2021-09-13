@@ -67,8 +67,8 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
      */
     private static final Map<String,AccessProviderGuard> accessProviderGuardMap = new HashMap();
 
-    @Pointcut("execution(public * com.myd.helloworld.chapter6.service.impl.*Impl.*(..))")
-    public void pointcut(){}
+    /*@Pointcut("execution(public * com.myd.helloworld.chapter6.service.impl.*Impl.*(..))")
+    public void pointcut(){}*/
 
     @Pointcut(value = "@annotation(com.myd.helloworld.annotation.AnnotationAop)")
     public void annotationCut(){}
@@ -78,7 +78,7 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
      * @param request
      */
     @Order(0)
-    @Before("pointcut() && args(request)")
+    @Before("annotationCut() && args(request)")
     public void check(CentreRequest request){
         try{
             request.checkParam();
@@ -88,7 +88,7 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
     }
 
     @Order(1)
-    @Before("pointcut() || annotationCut()")
+    @Before("annotationCut()")
     public void access(JoinPoint jp){
         try{
             if(MapUtils.isNotEmpty(accessProviderGuardMap)){
@@ -104,7 +104,7 @@ public class CoreMethodAspectLimit implements EnvironmentAware,DisposableBean,In
         }
     }
 
-    @Around("pointcut()")
+    @Around("annotationCut()")
     public Object logAround(ProceedingJoinPoint joinPoint){
         try {
            return joinPoint.proceed();

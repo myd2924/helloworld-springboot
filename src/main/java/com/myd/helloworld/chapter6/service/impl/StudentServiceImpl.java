@@ -1,8 +1,11 @@
 package com.myd.helloworld.chapter6.service.impl;
 
+import com.myd.helloworld.annotation.AnnotationAop;
+import com.myd.helloworld.annotation.OptimisticLockAnnotation;
 import com.myd.helloworld.chapter5.bean.Student;
 import com.myd.helloworld.chapter6.service.StudentService;
 import com.myd.helloworld.chapter6.service.repository.StudentDao;
+import com.myd.helloworld.except.TryAgainException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -38,5 +41,14 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public List<Student> getStudentLikeName(String name) {
         return studentDao.getStudentLikeName(name);
+    }
+
+    @Override
+    @OptimisticLockAnnotation
+    public void updateStudent(Student stu){
+        if("马元丁2".equals(stu.getName())){
+            throw new TryAgainException("模拟解决乐观锁问题");
+        }
+        studentDao.updateStudent(stu);
     }
 }

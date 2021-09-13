@@ -3,6 +3,7 @@ package com.myd.helloworld.controller;
 import com.myd.helloworld.chapter5.bean.Student;
 import com.myd.helloworld.chapter6.service.Jdbcservice;
 import com.myd.helloworld.chapter6.service.StudentService;
+import com.myd.helloworld.chapter6.service.impl.StudentServiceImpl;
 import com.myd.helloworld.chapter6.service.repository.StudentBatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ public class Student6Controller {
     private Jdbcservice jdbcservice;
 
     @Autowired
-    private StudentService studentService;
+    private StudentServiceImpl studentService;
 
     @Autowired
     private StudentBatchService studentBatchService;
@@ -53,6 +54,17 @@ public class Student6Controller {
         stu.setAge(age);
         return studentService.insertStudent(stu);
     }
+
+    @ResponseBody
+    @RequestMapping("/updateStu")
+    public Student updateStu(long id,String name) throws Exception {
+        final Student student = studentService.getStudent(id);
+        student.setName(name);
+        studentService.updateStudent(student);
+
+        return studentService.getStudent(id);
+    }
+
 
     @ResponseBody
     @RequestMapping("/getStudentByName")

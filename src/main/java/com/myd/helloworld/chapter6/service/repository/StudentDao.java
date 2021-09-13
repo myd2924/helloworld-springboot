@@ -20,4 +20,6 @@ public interface StudentDao {
     int insertStudent(Student stu);
 
     List<Student> getStudentLikeName(String name);
+
+    void updateStudent(Student stu);
 }
