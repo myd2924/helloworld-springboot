@@ -1,7 +1,6 @@
 package com.myd.helloworld.chapter6.service.impl;
 
-import com.myd.helloworld.annotation.AnnotationAop;
-import com.myd.helloworld.annotation.OptimisticLockAnnotation;
+import com.myd.helloworld.annotation.RetryOnFailure;
 import com.myd.helloworld.chapter5.bean.Student;
 import com.myd.helloworld.chapter6.service.StudentService;
 import com.myd.helloworld.chapter6.service.repository.StudentDao;
@@ -44,7 +43,7 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    @OptimisticLockAnnotation
+    @RetryOnFailure(tryTime = 5)
     public void updateStudent(Student stu){
         if("马元丁2".equals(stu.getName())){
             throw new TryAgainException("模拟解决乐观锁问题");

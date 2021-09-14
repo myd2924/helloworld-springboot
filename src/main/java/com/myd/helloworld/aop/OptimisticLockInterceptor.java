@@ -1,7 +1,6 @@
 package com.myd.helloworld.aop;
 
-import com.myd.helloworld.annotation.AnnotationAop;
-import com.myd.helloworld.annotation.OptimisticLockAnnotation;
+import com.myd.helloworld.annotation.RetryOnFailure;
 import com.myd.helloworld.except.TryAgainException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -30,7 +29,7 @@ public class OptimisticLockInterceptor {
 
     //private ThreadLocal<Integer> local = new ThreadLocal();
 
-    @Pointcut(value = "@annotation(com.myd.helloworld.annotation.OptimisticLockAnnotation)")
+    @Pointcut(value = "@annotation(com.myd.helloworld.annotation.RetryOnFailure)")
     public void pointCut(){}
 
     @Around(value = "pointCut()")
@@ -43,7 +42,8 @@ public class OptimisticLockInterceptor {
         // 为了获取注解信息
         Method currentMethod = target.getClass().getMethod(msig.getName(), msig.getParameterTypes());
         // 获取注解信息
-        OptimisticLockAnnotation annotation = currentMethod.getAnnotation(OptimisticLockAnnotation.class);
+        RetryOnFailure annotation = currentMethod.getAnnotation(RetryOnFailure.class);
+        final int tryTime = annotation.tryTime();
 
         AtomicInteger ai = new AtomicInteger(0);
         do{
@@ -52,11 +52,11 @@ public class OptimisticLockInterceptor {
                 return pjp.proceed();
             } catch (TryAgainException ex){
                 ai.incrementAndGet();
-                if(ai.get()>2){
+                if(ai.get()>tryTime-1){
                     log.info("*****三次-over******");
                 }
             }
-        }while(ai.get()<3);
+        }while(ai.get()<tryTime);
 
         return null;
     }

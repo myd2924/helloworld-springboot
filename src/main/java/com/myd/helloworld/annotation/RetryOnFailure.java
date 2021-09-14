@@ -13,5 +13,6 @@ import java.lang.annotation.Target;
  */
 @Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface OptimisticLockAnnotation {
+public @interface RetryOnFailure {
+    int tryTime() default 3;
 }
