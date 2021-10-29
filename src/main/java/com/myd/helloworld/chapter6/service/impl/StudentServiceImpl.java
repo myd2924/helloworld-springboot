@@ -4,6 +4,7 @@ import com.myd.helloworld.annotation.RetryOnFailure;
 import com.myd.helloworld.chapter5.bean.Student;
 import com.myd.helloworld.chapter6.service.StudentService;
 import com.myd.helloworld.chapter6.service.repository.StudentDao;
+import com.myd.helloworld.except.BizException;
 import com.myd.helloworld.except.TryAgainException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,5 +50,12 @@ public class StudentServiceImpl implements StudentService{
             throw new TryAgainException("模拟解决乐观锁问题");
         }
         studentDao.updateStudent(stu);
+    }
+
+    @Override
+    public void testBizException(String ca){
+        if("mm".equals(ca)){
+            throw new BizException("M-000003","");
+        }
     }
 }

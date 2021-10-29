@@ -1,6 +1,7 @@
 package com.myd.helloworld.chapter6.service;
 
 import com.myd.helloworld.chapter5.bean.Student;
+import com.myd.helloworld.except.BizException;
 import com.myd.helloworld.except.TryAgainException;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface StudentService {
     List<Student> getStudentLikeName(String name);
 
     void updateStudent(Student stu) throws TryAgainException;
+
+    void testBizException(String ca) throws BizException;
 }
