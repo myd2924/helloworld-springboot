@@ -34,7 +34,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author <a href="mailto:mayuanding@qianmi.com">OF3787-马元丁</a>
  * @version 0.1.0
  * @Date:2021/9/1 17:56
- * @Description:
+ * @Description: 缺陷 没有做到在任意一秒内 限流500  所以 这个功能有缺陷
+ * redis 的zset或list令牌桶  滑动任意n秒限流m的请求
  *
  * 原来的code:
  *  private RelaxedPropertyResolver relaxedPropertyResolver;
