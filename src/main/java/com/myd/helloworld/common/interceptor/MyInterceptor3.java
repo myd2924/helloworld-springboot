@@ -27,18 +27,18 @@ public class MyInterceptor3 implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String url = request.getRequestURL().toString();
-        System.out.println("先置处理--我是300优先级");
-        System.out.println(url);
+        //System.out.println("先置处理--我是300优先级");
+        //System.out.println(url);
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
-        System.out.println("后置处理--我是300优先级");
+        //System.out.println("后置处理--我是300优先级");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
-        System.out.println("我是300优先级--用来清空一些资源");
+        //System.out.println("我是300优先级--用来清空一些资源");
     }
 }

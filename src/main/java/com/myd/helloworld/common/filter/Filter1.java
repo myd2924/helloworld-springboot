@@ -25,13 +25,13 @@ public class Filter1 implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        log.info("doFilter1."+" before");
+        //log.info("doFilter1."+" before");
         long start = System.currentTimeMillis();
         filterChain.doFilter(servletRequest,servletResponse);
         long end = System.currentTimeMillis();
         long time = end-start;
         final String path = ((HttpServletRequest) servletRequest).getServletPath();
-        log.info("doFilter1."+time+","+path + "after");
+        //log.info("doFilter1."+time+","+path + "after");
     }
 
     @Override

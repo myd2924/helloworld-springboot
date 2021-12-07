@@ -50,12 +50,12 @@ public class AopAnnotationDefine {
 
     @Before(value = "pointcut1()")
     public void before(){
-        System.out.println("前置-pointcut1--批量定义方式");
+       // System.out.println("前置-pointcut1--批量定义方式");
     }
 
     @After(value = "pointcut2() || pointcut1()")
     public void after(JoinPoint joinPoint){
-        logger.info("logger-----------------------------");
+        /*logger.info("logger-----------------------------");
         System.out.println("后置-pointcut2-注解定义方式");
         final ServletRequestAttributes requestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         final HttpServletRequest request = requestAttributes.getRequest();
@@ -67,7 +67,7 @@ public class AopAnnotationDefine {
         System.out.println("请求参数："+ Arrays.toString(joinPoint.getArgs()));
         System.out.println("<------------------------------>");
         startTime.set(System.currentTimeMillis());
-        logger.info(startTime.get().toString());
+        logger.info(startTime.get().toString());*/
 
     }
 

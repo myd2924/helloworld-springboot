@@ -4,6 +4,7 @@ import com.myd.helloworld.common.filter.Filter1;
 import com.myd.helloworld.common.interceptor.MyInterceptor1;
 import com.myd.helloworld.common.interceptor.MyInterceptor2;
 import com.myd.helloworld.common.interceptor.MyInterceptor3;
+import com.myd.helloworld.intercept.RequestLimiterInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -29,12 +30,16 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private MyInterceptor3 myInterceptor3;
 
+    @Autowired
+    protected RequestLimiterInterceptor requestLimiterInterceptor;
+
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(myInterceptor1);
         registry.addInterceptor(myInterceptor2);
         registry.addInterceptor(myInterceptor3);
+        registry.addInterceptor(requestLimiterInterceptor);
     }
 
     @Bean

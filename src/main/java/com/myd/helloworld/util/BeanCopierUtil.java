@@ -1,7 +1,5 @@
 package com.myd.helloworld.util;
 
-import com.myd.helloworld.chapter5.bean.Student;
-import com.myd.helloworld.config.User;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.cglib.beans.BeanCopier;
 
