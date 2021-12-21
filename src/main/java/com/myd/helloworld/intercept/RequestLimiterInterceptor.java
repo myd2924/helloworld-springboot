@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author <a href="mailto:mayuanding@qianmi.com">OF3787-马元丁</a>
  * @version 0.1.0
  * @Date:2021/12/6 17:58
- * @Description:
+ * @Description: Guava rateLimiter实现
  */
 @Component
 @Slf4j

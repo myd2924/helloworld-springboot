@@ -29,7 +29,7 @@ public @interface RequestLimiter {
      * 时间单位
      * @return
      */
-    TimeUnit timeunit() default TimeUnit.SECONDS;
+    TimeUnit timeunit() default TimeUnit.MILLISECONDS;
 
     /**
      * w无法获取令牌  提示文案
